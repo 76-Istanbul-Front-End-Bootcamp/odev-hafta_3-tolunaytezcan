@@ -1,55 +1,63 @@
-function Animal(name){
+class Animal {
+  constructor(name) {
     this.name = name;
-}
+  }
 
-Animal.prototype.action = function(){
-  document.getElementById(this.actionSoundName).play();
-  
-}
+  action(event) {
+    event.stopPropagation();
+    document.getElementById(this.actionSoundName).play();
+  }
 
-Animal.prototype.putInTheDocument = function(){
-    var petsTable = document.getElementById("petsTable");
-    var petTR = document.createElement("tr");
-  
-    var petNameTD = document.createElement("td");
+  showImage() {
+    document.querySelector("img").src = this.image;
+    document.querySelector("img").width = "500"
+    document.querySelector("img").height = "400"
+  }
+
+  putInTheDocument() {
+    const petsTable = document.getElementById("petsTable");
+    const petTR = document.createElement("tr");
+    
+    const petNameTD = document.createElement("td");
     petNameTD.textContent = this.name;
     petTR.appendChild(petNameTD);
-  
-    var petLegsTD = document.createElement("td");
+
+    const petLegsTD = document.createElement("td");
     petLegsTD.textContent = this.legs;
     petTR.appendChild(petLegsTD);
-  
-    var petActionTD = document.createElement("td");
-    var petActionTDButton = document.createElement("button");
+
+    const petActionTD = document.createElement("td");
+    const petActionTDButton = document.createElement("button");
     petActionTDButton.textContent = this.actionText;
     petActionTD.appendChild(petActionTDButton);
     petTR.appendChild(petActionTD);
-    
+
     petActionTDButton.onclick = this.action.bind(this);
+    petTR.onclick = this.showImage.bind(this);
     petsTable.querySelector("tbody").appendChild(petTR)
+  }
 }
 
-
-function Cat(name){
-    Animal.call(this, name);
+class Cat extends Animal {
+  constructor(name) {
+    super(name);
     this.legs = 4;
     this.actionText = "Meoow"
     this.actionSoundName = "meow"
+    this.image = "myCat.jpg"
+  }
 }
 
-Cat.prototype = Animal.prototype;
-
-function Monkey(name){
-    Animal.call(this, name);
+class Monkey extends Animal {
+  constructor(name) {
+    super(name);
     this.legs = 2;
-    this.actionText = "Scream";
-    this.actionSoundName = "scream";
+    this.actionText = "Scream"
+    this.actionSoundName = "scream"
+    this.image = "https://pbs.twimg.com/media/En0g1OPXIAAwAT2.jpg"
+  }
 }
-
-Monkey.prototype = Animal.prototype;
-
-var Mila = new Cat("Mila");
+const Mila = new Cat("Şero");
+const Charlie = new Monkey("Charlie");
 Mila.putInTheDocument();
-
-var Charlie = new Monkey("Charlie");
 Charlie.putInTheDocument();

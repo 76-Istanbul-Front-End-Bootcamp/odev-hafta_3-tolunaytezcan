@@ -1,0 +1,28 @@
+body{
+  background-image: url("https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+table{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color:yellow;
+}
+
+tbody tr:hover{
+  background-color:green;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+thead tr{
+  background-color: red;
+  color: black;
+  font-size: 25px;
+}
+button{
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  border-radius: 25px;
+}
